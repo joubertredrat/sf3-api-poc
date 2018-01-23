@@ -1,0 +1,22 @@
+services:
+    app.store.repository:
+        class: AppBundle\Repository\StoreRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - AppBundle\Entity\Store
+
+    app.product.repository:
+        class: AppBundle\Repository\ProductRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - AppBundle\Entity\Product
+
+    app.store.service:
+        class: AppBundle\Service\StoreService
+        arguments:
+            - "@app.store.repository"
+
+    app.product.service:
+        class: AppBundle\Service\ProductService
+        arguments:
+            - "@app.product.repository"
