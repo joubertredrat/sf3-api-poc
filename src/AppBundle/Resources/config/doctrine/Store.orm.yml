@@ -21,6 +21,7 @@ AppBundle\Entity\Store:
         products:
             targetEntity: AppBundle\Entity\Product
             mappedBy: store
+            cascade: [ persist ]
     lifecycleCallbacks:
         prePersist: [ setCreatedAt ]
         preUpdate: [ setUpdatedAt ]
