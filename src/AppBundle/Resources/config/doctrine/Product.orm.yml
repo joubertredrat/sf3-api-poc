@@ -1,0 +1,32 @@
+AppBundle\Entity\Product:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ProductRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        value:
+            type: integer
+        stock:
+            type: integer
+        createdAt:
+            type: datetimetz
+        updatedAt:
+            type: datetimetz
+            nullable: true
+    manyToOne:
+        store:
+            targetEntity: AppBundle\Entity\Store
+            joinColumn:
+                name: store_id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAt ]
+        preUpdate: [ setUpdatedAt ]

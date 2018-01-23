@@ -1,0 +1,26 @@
+AppBundle\Entity\Store:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\StoreRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        createdAt:
+            type: datetimetz
+        updatedAt:
+            type: datetimetz
+            nullable: true
+    oneToMany:
+        products:
+            targetEntity: AppBundle\Entity\Product
+            mappedBy: store
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAt ]
+        preUpdate: [ setUpdatedAt ]
